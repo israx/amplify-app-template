@@ -1,8 +1,10 @@
 
 import { Authenticator } from "./screens/Authenticator";
 
-import { Amplify} from "aws-amplify";
+import { Amplify, Auth} from "aws-amplify";
 import { Home } from "./pages/Home";
+
+
 
 function App() {
   return (

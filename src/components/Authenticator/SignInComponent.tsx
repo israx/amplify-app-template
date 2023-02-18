@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { Box, Button, FormControl, Input, InputLabel } from "@mui/material";
 import { Auth } from "aws-amplify";
-import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth";
+
 import { useAuthenticator } from "../../hooks/useAuthenticator";
 import { AuthenticatorScreenWrapper } from "./AuthenticatorScreenWrapper";
-import { ChallengeName } from "amazon-cognito-identity-js";
 import { GoogleIdentityPoolFederation } from "./GoogleIdentityPoolFederation";
 import { FacebookIdentityPoolFederation } from "./FacebookIdentityPoolFederation";
 
+type ChallengeName = "CUSTOM_CHALLENGE" | "SOFTWARE_TOKEN_MFA" | "NEW_PASSWORD_REQUIRED" | "SOFTWARE_TOKEN_MFA"
+enum CognitoHostedUIIdentityProvider {
+  Google = "Google"
+}
 type SignInFormData = {
   username: string;
   password: string;
