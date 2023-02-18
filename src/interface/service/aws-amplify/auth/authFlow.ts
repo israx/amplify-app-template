@@ -1,0 +1,6 @@
+export const enum AuthFlow {
+    USER_SRP_AUTH = "USER_SRP_AUTH",
+    USER_PASSWORD_AUTH = "USER_PASSWORD_AUTH",
+    CUSTOM_AUTH="CUSTOM_AUTH"
+  }
+  
