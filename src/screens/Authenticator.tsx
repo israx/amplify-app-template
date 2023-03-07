@@ -10,6 +10,8 @@ import {
   SignUpComponent,
 } from "../components/Authenticator";
 import { AuthenticatorContext } from "../context/authenticatorContext";
+import { SMSComponent } from "../components/Authenticator/SMSComponent";
+import { SetupTOTPComponent } from "../components/SetupTOTPComponent";
 
 export const Authenticator = ({ children }: { children: JSX.Element }) => {
   const [authenticatorState, setAuthenticatorState] =
@@ -34,6 +36,8 @@ export const Authenticator = ({ children }: { children: JSX.Element }) => {
         return <CustomAuthComponent />;
       else if (authenticatorState === "confirmSignInTOTP")
         return <ConfirmSignInTOTP />;
+      else if (authenticatorState === "SMS_MFA") return <SMSComponent />;
+      else if (authenticatorState === "setupMFA") return <SetupTOTPComponent/>
       return <CircularProgress />;
     },
     []

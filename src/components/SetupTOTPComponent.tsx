@@ -4,16 +4,16 @@ import {  useState } from "react";
 import { Auth } from "aws-amplify";
 import { useAuthenticator } from "../hooks/useAuthenticator";
 
-export const QRCodeComponent = () => {
+export const SetupTOTPComponent = () => {
   const [verificationCode, setVerificationCode] = useState<string>("");
 
   const [secretCode, setSecretCode] = useState<string | null>(null);
-  const { user } = useAuthenticator();
+  const { user , setAuthenticatorState} = useAuthenticator();
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setVerificationCode(e.target.value);
   }
-  const appName = "aws-amplify-v5";
+  const appName = "aws-amplify";
   const qrCodeLink =
     "otpauth://totp/AWS:" + appName + "?secret=" + secretCode ?? "";
 
@@ -41,6 +41,7 @@ export const QRCodeComponent = () => {
 
       await Auth.setPreferredMFA(user, "TOTP");
       setSecretCode(null);
+      setAuthenticatorState("authenticatedComponent")
     } catch (error) {
       console.log(error);
     }

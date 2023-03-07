@@ -5,4 +5,6 @@ export type AuthenticatorState =
   | "authenticatedComponent"
   | "customAuthChallengeComponent"
   | "confirmSignInTOTP"
-  | "newPasswordRequired";
+  | "newPasswordRequired"
+  | "setupMFA"
+  | "SMS_MFA";

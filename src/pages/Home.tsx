@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import { AuthFlowComponent } from "../components/AuthFlowComponent";
 import { SelectMFAComponent } from "../components/SelectMFAComponent";
 
-import { QRCodeComponent } from "../components/QRCodeComponent";
+import { SetupTOTPComponent } from "../components/SetupTOTPComponent";
 import { SignOutComponent } from "../components/Authenticator";
 export const Home = () => {
   return (
@@ -24,7 +24,7 @@ export const Home = () => {
       <SelectMFAComponent />
 
 
-      <QRCodeComponent/>
+      <SetupTOTPComponent/>
       
       <SignOutComponent />
     </Box>

@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { Box, Button, FormControl, Input, InputLabel } from "@mui/material";
 import { Auth } from "aws-amplify";
-
 import { useAuthenticator } from "../../hooks/useAuthenticator";
 import { AuthenticatorScreenWrapper } from "./AuthenticatorScreenWrapper";
 import { GoogleIdentityPoolFederation } from "./GoogleIdentityPoolFederation";
 import { FacebookIdentityPoolFederation } from "./FacebookIdentityPoolFederation";
 
-type ChallengeName = "CUSTOM_CHALLENGE" | "SOFTWARE_TOKEN_MFA" | "NEW_PASSWORD_REQUIRED" | "SOFTWARE_TOKEN_MFA"
+type ChallengeName = | 'CUSTOM_CHALLENGE'
+		| 'MFA_SETUP'
+		| 'NEW_PASSWORD_REQUIRED'
+		| 'SELECT_MFA_TYPE'
+		| 'SMS_MFA'
+		| 'SOFTWARE_TOKEN_MFA';
+
 enum CognitoHostedUIIdentityProvider {
   Google = "Google"
 }
@@ -32,7 +37,9 @@ export const SignInComponent = () => {
       if (resp.authenticationFlowType === "CUSTOM_AUTH") {
         return setAuthenticatorState("customAuthChallengeComponent");
       }
+ 
 
+      console.log(resp.challengeName)
       handleAuthChallenge(resp.challengeName);
     } catch (error) {
       console.log(error);
@@ -43,12 +50,16 @@ export const SignInComponent = () => {
     switch (challengeName) {
       case "CUSTOM_CHALLENGE":
         return setAuthenticatorState("customAuthChallengeComponent");
+      case "MFA_SETUP":
+        return setAuthenticatorState("setupMFA")
       case "SOFTWARE_TOKEN_MFA":
         return setAuthenticatorState("confirmSignInTOTP");
       case "NEW_PASSWORD_REQUIRED":
         return setAuthenticatorState("newPasswordRequired");
       case "SOFTWARE_TOKEN_MFA":
         return setAuthenticatorState("confirmSignInTOTP");
+      case "SMS_MFA":
+        return setAuthenticatorState("SMS_MFA")
       default:
         return setAuthenticatorState("authenticatedComponent");
     }
@@ -113,8 +124,6 @@ export const SignInComponent = () => {
           Sign up
         </Button>
       </Box>
-      <GoogleIdentityPoolFederation />
-      <FacebookIdentityPoolFederation />
     </AuthenticatorScreenWrapper>
   );
 };

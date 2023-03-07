@@ -8,12 +8,14 @@ type SignUpFormData = {
   username: string;
   password: string;
   email: string;
+  phoneNumber:string
 };
 export const SignUpComponent = () => {
   const [data, setData] = useState<SignUpFormData>({
     username: "",
     password: "",
     email: "",
+    phoneNumber:""
   });
 
   const { setAuthenticatorState } = useAuthenticator();
@@ -25,6 +27,7 @@ export const SignUpComponent = () => {
         password: data.password,
         attributes: {
           email: data.email,
+          phoneNumber: data.phoneNumber
         },
       });
       data.username && localStorage.setItem("username", data.username);
@@ -69,6 +72,19 @@ export const SignUpComponent = () => {
           value={data.email}
         />
       </FormControl>
+
+
+      <FormControl>
+        <InputLabel htmlFor="phone">Phone</InputLabel>
+        <Input
+          id="phoneNumber"
+          name="phoneNumber"
+          onChange={handleChange}
+          value={data.phoneNumber}
+        />
+      </FormControl>
+
+      
 
       <Box display="flex" justifyContent="center" gap={2} mt={2}>
         <Button
