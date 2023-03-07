@@ -13,15 +13,18 @@ export const SetupTOTPComponent = () => {
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setVerificationCode(e.target.value);
   }
-  const appName = "aws-amplify";
+  
+  const username = user?.username
+
   const qrCodeLink =
-    "otpauth://totp/AWS:" + appName + "?secret=" + secretCode ?? "";
+    "otpauth://totp/AWS:" + username + "?secret=" + secretCode ?? "";
+
+    
 
   async function getSecretCode() {
     try {
-      const authUser = await Auth.currentAuthenticatedUser();
-      const secret = await Auth.setupTOTP(authUser);
-
+   
+      const secret = await Auth.setupTOTP(user);
       setSecretCode(secret);
     } catch (error) {
       console.log(error);
@@ -37,9 +40,10 @@ export const SetupTOTPComponent = () => {
       return console.warn("verification code can't be empty");
 
     try {
+   
       const session = await Auth.verifyTotpToken(user, verificationCode);
 
-      await Auth.setPreferredMFA(user, "TOTP");
+      console.log(session)
       setSecretCode(null);
       setAuthenticatorState("authenticatedComponent")
     } catch (error) {

@@ -27,7 +27,7 @@ export const SignUpComponent = () => {
         password: data.password,
         attributes: {
           email: data.email,
-          phoneNumber: data.phoneNumber
+          phone_number: data.phoneNumber
         },
       });
       data.username && localStorage.setItem("username", data.username);

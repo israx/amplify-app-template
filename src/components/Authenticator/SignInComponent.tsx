@@ -32,6 +32,7 @@ export const SignInComponent = () => {
     try {
       const resp = await Auth.signIn(data.username, data.password);
 
+      console.log(resp)
       setUser(resp);
 
       if (resp.authenticationFlowType === "CUSTOM_AUTH") {

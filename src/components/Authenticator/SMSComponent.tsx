@@ -21,7 +21,7 @@ export const SMSComponent = () => {
         "SMS_MFA"
       );
 
-      console.log(resp)
+  
       setUser(resp);
 
       setAuthenticatorState("authenticatedComponent");

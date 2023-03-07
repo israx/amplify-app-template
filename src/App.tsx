@@ -1,11 +1,10 @@
 
 import { Authenticator } from "./screens/Authenticator";
-
-import { Amplify, Auth} from "aws-amplify";
+import { Amplify} from "aws-amplify";
 import { Home } from "./pages/Home";
+import AmplifyExports from "./aws-exports"
 
-
-
+Amplify.configure(AmplifyExports)
 function App() {
   return (
     <div
