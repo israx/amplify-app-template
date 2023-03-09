@@ -8,7 +8,7 @@ import { Auth } from "aws-amplify";
 import { useEffect, useState } from "react";
 import { MFAType } from "../interface/service/aws-amplify/auth/mfaType";
 
-export const SelectMFAComponent = () => {
+export const SetMFAComponent = () => {
   const [mfaType, setMfaType] = useState<MFAType | undefined>(undefined);
   const [user, setUser] = useState(null)
   useEffect(() => {
@@ -18,8 +18,8 @@ export const SelectMFAComponent = () => {
   async function getMFA() {
     try {
       const authenticatedUser = await Auth.currentAuthenticatedUser();
-
-      const mfa = await Auth.getPreferredMFA(authenticatedUser);
+    console.log({authenticatedUser})
+      const mfa = await Auth.getPreferredMFA(authenticatedUser, {bypassCache:true});
       console.log(mfa);
       setMfaType(mfa as MFAType);
       setUser(authenticatedUser)

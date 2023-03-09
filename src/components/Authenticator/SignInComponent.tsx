@@ -61,6 +61,8 @@ export const SignInComponent = () => {
         return setAuthenticatorState("confirmSignInTOTP");
       case "SMS_MFA":
         return setAuthenticatorState("SMS_MFA")
+      case "SELECT_MFA_TYPE":
+        return setAuthenticatorState("selectMFA")
       default:
         return setAuthenticatorState("authenticatedComponent");
     }

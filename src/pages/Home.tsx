@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { AuthFlowComponent } from "../components/AuthFlowComponent";
-import { SelectMFAComponent } from "../components/SelectMFAComponent";
+import { SetMFAComponent } from "../components/SetMFAComponent";
 
 import { SetupTOTPComponent } from "../components/SetupTOTPComponent";
 import { SignOutComponent } from "../components/Authenticator";
@@ -18,14 +18,12 @@ export const Home = () => {
         position: "relative",
       }}
     >
-   
       <AuthFlowComponent />
 
-      <SelectMFAComponent />
+      <SetMFAComponent />
 
+      <SetupTOTPComponent />
 
-      <SetupTOTPComponent/>
-      
       <SignOutComponent />
     </Box>
   );

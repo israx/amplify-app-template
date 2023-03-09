@@ -7,4 +7,5 @@ export type AuthenticatorState =
   | "confirmSignInTOTP"
   | "newPasswordRequired"
   | "setupMFA"
-  | "SMS_MFA";
+  | "SMS_MFA"
+  | "selectMFA"

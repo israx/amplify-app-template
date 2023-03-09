@@ -14,10 +14,10 @@ export const SetupTOTPComponent = () => {
     setVerificationCode(e.target.value);
   }
   
-  const username = user?.username
+  const username = user.username
 
   const qrCodeLink =
-    "otpauth://totp/AWS:" + username + "?secret=" + secretCode ?? "";
+    `otpauth://totp/AWS:${username}?secret=${secretCode}` 
 
     
 
