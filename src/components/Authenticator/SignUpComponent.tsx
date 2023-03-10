@@ -74,7 +74,7 @@ export const SignUpComponent = () => {
       </FormControl>
 
 
-      {/* <FormControl>
+      <FormControl>
         <InputLabel htmlFor="phone">Phone</InputLabel>
         <Input
           id="phoneNumber"
@@ -82,7 +82,7 @@ export const SignUpComponent = () => {
           onChange={handleChange}
           value={data.phoneNumber}
         />
-      </FormControl> */}
+      </FormControl>
 
       
 

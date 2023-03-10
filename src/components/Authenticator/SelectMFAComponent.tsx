@@ -5,11 +5,10 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import { Auth } from "aws-amplify";
 import { useState } from "react";
 import { MFAType } from "../../interface/service/aws-amplify/auth/mfaType";
 import { useAuthenticator } from "../../hooks/useAuthenticator";
-import { CognitoUser, CognitoUserPool } from "amazon-cognito-identity-js";
+import { CognitoUser } from "amazon-cognito-identity-js";
 
 export const SelectMFAComponent = () => {
   const [mfaType, setMfaType] = useState<MFAType>(MFAType.NOMFA);

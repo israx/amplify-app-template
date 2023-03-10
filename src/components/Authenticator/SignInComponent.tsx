@@ -3,8 +3,7 @@ import { Box, Button, FormControl, Input, InputLabel } from "@mui/material";
 import { Auth } from "aws-amplify";
 import { useAuthenticator } from "../../hooks/useAuthenticator";
 import { AuthenticatorScreenWrapper } from "./AuthenticatorScreenWrapper";
-import { GoogleIdentityPoolFederation } from "./GoogleIdentityPoolFederation";
-import { FacebookIdentityPoolFederation } from "./FacebookIdentityPoolFederation";
+
 
 type ChallengeName = | 'CUSTOM_CHALLENGE'
 		| 'MFA_SETUP'
@@ -32,7 +31,6 @@ export const SignInComponent = () => {
     try {
       const resp = await Auth.signIn(data.username, data.password);
 
-      console.log(resp)
       setUser(resp);
 
       if (resp.authenticationFlowType === "CUSTOM_AUTH") {
@@ -65,6 +63,7 @@ export const SignInComponent = () => {
         return setAuthenticatorState("selectMFA")
       default:
         return setAuthenticatorState("authenticatedComponent");
+  
     }
   }
   async function handleFederate() {
